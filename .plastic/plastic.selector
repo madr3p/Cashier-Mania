@@ -1,0 +1,4 @@
+repository "Cashier Mania/CashierMania@18968076057735@cloud"
+  path "/"
+    br "/main"
+    co "/main"
