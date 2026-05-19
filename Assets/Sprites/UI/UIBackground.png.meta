@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a3b0a2c614c3f69449dbad219a6354a1
+guid: d92043997b05d194cbbb198718905483
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8376229347262176984
-    second: pillow_0
+      213: -6037497265438797557
+    second: UIBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,23 +152,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pillow_0
+      name: UIBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 180
-        height: 143
+        width: 1920
+        height: 1281
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8216c3fa9c7a1cb80800000000000000
-      internalID: -8376229347262176984
+      spriteID: b01d021a930863ca0800000000000000
+      internalID: -6037497265438797557
       vertices: []
       indices: 
       edges: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 82352d84e2cb2e74999cac9788a7a649
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pillow_0: -8376229347262176984
+      UIBackground_0: -6037497265438797557
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

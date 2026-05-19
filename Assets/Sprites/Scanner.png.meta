@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a3b0a2c614c3f69449dbad219a6354a1
+guid: 3db90f4a63dce144e95a33f05d71c42e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8376229347262176984
-    second: pillow_0
+      213: -9155275520581837022
+    second: Scanner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pillow_0
+      name: Scanner_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 180
-        height: 143
+        x: 70
+        y: 25
+        width: 116
+        height: 206
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8216c3fa9c7a1cb80800000000000000
-      internalID: -8376229347262176984
+      spriteID: 22fd3e6bb6de1f080800000000000000
+      internalID: -9155275520581837022
       vertices: []
       indices: 
       edges: []
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pillow_0: -8376229347262176984
+      Scanner_0: -9155275520581837022
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
