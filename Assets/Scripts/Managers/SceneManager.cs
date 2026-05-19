@@ -13,9 +13,19 @@ public class MenuSceneManager : MonoBehaviour
         SceneManager.LoadScene("LevelSelection");
     }
 
-    public void LoadLevel1()
+    public void LoadLevelEasy()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("LevelEasy");
+    }
+
+    public void LoadLevelMedium()
+    {
+        SceneManager.LoadScene("LevelMedium");
+    }
+
+    public void LoadLevelHard()
+    {
+        SceneManager.LoadScene("LevelHard");
     }
 
     public void LoadOptions()
@@ -26,6 +36,11 @@ public class MenuSceneManager : MonoBehaviour
     public void LoadCredits()
     {
         SceneManager.LoadScene("Credits");
+    }
+
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void QuitGame()
