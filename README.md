@@ -1,7 +1,7 @@
 # Cashier Mania
 
 <p align="center">
-  <img src="Assets/Images/logo.png" width="300">
+  <img src="Assets/Sprites/Logo.png" width="300">
 </p>
 
 ## About The Project
@@ -22,9 +22,13 @@ The project is currently in active development and serves as a diploma-level gam
 **Platform:** Windows  
 **Engine:** Unity  
 
-Project mainly developed by the team leader:
+Project mainly developed by the team leader, members are contributors:
 
-**Madrep / Zarif**
+**Zarif**
+**Den**
+**Ralph**
+**Faizi**
+**Faqhry**
 
 ---
 
@@ -61,23 +65,14 @@ Future gameplay flow may change as development progresses.
 ### Implemented Systems
 
 ✅ Customer spawning system
-
 ✅ Random item generation
-
 ✅ Drag & drop item interaction
-
 ✅ Scanner system
-
 ✅ Automatic total calculation
-
 ✅ Manual balance giving system
-
 ✅ Cursor state system
-
 ✅ Main menu
-
 ✅ Options menu
-
 ✅ Credits scene
 
 ---
@@ -138,27 +133,16 @@ Planned features for future development:
     - Hard
 
 - Life system
-
 - Score system
-
 - Win/Lose conditions
-
 - Better customer behavior
-
 - Sound effects and feedback system
-
 - More item variations
-
 - Improved UI animations
-
 - Better customer flow logic
-
 - Improved balancing system
-
 - More polished interactions
-
 - Gameplay optimization
-
 - Visual improvements
 
 ---
@@ -192,12 +176,28 @@ Coming soon.
 
 **NorthBorneo**
 
-Main development contribution led by:
-
-**Madrep / Zarif**
-
 ---
 
 ## License
 
-This project is currently intended for educational purposes and internal project use.
+MIT License
+
+Copyright (c) 2026 madr3p
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
