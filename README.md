@@ -25,9 +25,13 @@ The project is currently in active development and serves as a diploma-level gam
 Project mainly developed by the team leader, members are contributors:
 
 **Zarif**
+
 **Den**
+
 **Ralph**
+
 **Faizi**
+
 **Faqhry**
 
 ---
@@ -65,14 +69,23 @@ Future gameplay flow may change as development progresses.
 ### Implemented Systems
 
 ✅ Customer spawning system
+
 ✅ Random item generation
+
 ✅ Drag & drop item interaction
+
 ✅ Scanner system
+
 ✅ Automatic total calculation
+
 ✅ Manual balance giving system
+
 ✅ Cursor state system
+
 ✅ Main menu
+
 ✅ Options menu
+
 ✅ Credits scene
 
 ---
@@ -133,16 +146,27 @@ Planned features for future development:
     - Hard
 
 - Life system
+
 - Score system
+
 - Win/Lose conditions
+
 - Better customer behavior
+
 - Sound effects and feedback system
+
 - More item variations
+
 - Improved UI animations
+
 - Better customer flow logic
+
 - Improved balancing system
+
 - More polished interactions
+
 - Gameplay optimization
+
 - Visual improvements
 
 ---
