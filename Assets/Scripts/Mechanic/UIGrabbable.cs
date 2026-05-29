@@ -8,68 +8,175 @@ public class UIGrabbable : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler
 {
+    [Header("Physics")]
     public float gravity = 500f;
-    public float floorY = -250f;
+
+    [Header("Counter Settings")]
+    public string counterObjectName = "Counter";
+
+    public float surfaceOffset = 5f;
 
     private RectTransform rect;
+    private RectTransform counterRect;
+
     private bool isDragging;
 
     private float velocityY;
+    private float floorY;
 
     void Start()
     {
-        rect = GetComponent<RectTransform>();
+        rect =
+            GetComponent<RectTransform>();
+
+        GameObject counter =
+            GameObject.Find(
+                counterObjectName
+            );
+
+        if(counter != null)
+        {
+            counterRect =
+                counter.GetComponent
+                <RectTransform>();
+
+            CalculateFloor();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "Counter object not found: "
+                + counterObjectName
+            );
+        }
     }
 
     void Update()
     {
-        if (isDragging)
+        if(counterRect != null)
         {
-            rect.position = Mouse.current.position.ReadValue();
+            CalculateFloor();
+        }
+
+        if(isDragging)
+        {
+            rect.position =
+                Mouse.current.position
+                .ReadValue();
         }
         else
         {
-            velocityY -= gravity * Time.deltaTime;
+            velocityY -=
+                gravity *
+                Time.deltaTime;
 
             rect.anchoredPosition +=
-                new Vector2(0, velocityY * Time.deltaTime);
+                Vector2.up *
+                velocityY *
+                Time.deltaTime;
 
-            if(rect.anchoredPosition.y <= floorY)
+            if(
+                rect.anchoredPosition.y
+                <= floorY
+            )
             {
-                Vector2 pos = rect.anchoredPosition;
+                Vector2 pos =
+                    rect.anchoredPosition;
 
-                pos.y = floorY;
+                pos.y =
+                    floorY;
 
-                rect.anchoredPosition = pos;
+                rect.anchoredPosition =
+                    pos;
 
                 velocityY = 0;
             }
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    void CalculateFloor()
     {
-        CursorManager.Instance.SetHandOpen();
+        float counterTop =
+            counterRect.anchoredPosition.y
+            +
+            (
+                counterRect.rect.height
+                / 2f
+            );
+
+        float itemHalfHeight =
+            rect.rect.height
+            / 2f;
+
+        floorY =
+            counterTop
+            +
+            itemHalfHeight
+            +
+            surfaceOffset;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerEnter(
+        PointerEventData eventData
+    )
     {
-        if (!isDragging)
-            CursorManager.Instance.SetPointer();
+        if(
+            CursorManager.Instance
+            != null
+        )
+        {
+            CursorManager.Instance
+                .SetHandOpen();
+        }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerExit(
+        PointerEventData eventData
+    )
+    {
+        if(
+            !isDragging
+            &&
+            CursorManager.Instance
+            != null
+        )
+        {
+            CursorManager.Instance
+                .SetPointer();
+        }
+    }
+
+    public void OnPointerDown(
+        PointerEventData eventData
+    )
     {
         isDragging = true;
+
         velocityY = 0;
 
-        CursorManager.Instance.SetHandClosed();
+        if(
+            CursorManager.Instance
+            != null
+        )
+        {
+            CursorManager.Instance
+                .SetHandClosed();
+        }
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp(
+        PointerEventData eventData
+    )
     {
         isDragging = false;
 
-        CursorManager.Instance.SetHandOpen();
+        if(
+            CursorManager.Instance
+            != null
+        )
+        {
+            CursorManager.Instance
+                .SetHandOpen();
+        }
     }
 }

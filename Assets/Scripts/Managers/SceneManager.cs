@@ -1,51 +1,57 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuSceneManager : MonoBehaviour
 {
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneTransitionManager.Instance
+            .ChangeScene("MainMenu");
     }
 
     public void LoadLevelSelection()
     {
-        SceneManager.LoadScene("LevelSelection");
+        SceneTransitionManager.Instance
+            .ChangeScene("LevelSelection");
     }
 
     public void LoadLevelEasy()
     {
-        SceneManager.LoadScene("LevelEasy");
+        SceneTransitionManager.Instance
+            .ChangeScene("LevelEasy");
     }
 
     public void LoadLevelMedium()
     {
-        SceneManager.LoadScene("LevelMedium");
+        SceneTransitionManager.Instance
+            .ChangeScene("LevelMedium");
     }
 
     public void LoadLevelHard()
     {
-        SceneManager.LoadScene("LevelHard");
+        SceneTransitionManager.Instance
+            .ChangeScene("LevelHard");
     }
 
     public void LoadOptions()
     {
-        SceneManager.LoadScene("Options");
+        SceneTransitionManager.Instance
+            .ChangeScene("Options");
     }
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene("Credits");
+        SceneTransitionManager.Instance
+            .ChangeScene("Credits");
     }
 
     public void LoadTutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneTransitionManager.Instance
+            .ChangeScene("Tutorial");
     }
 
     public void QuitGame()
     {
-        Debug.Log("Game Closed");
         Application.Quit();
     }
 }

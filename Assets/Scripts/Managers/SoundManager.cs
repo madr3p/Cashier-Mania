@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -8,129 +10,297 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    [Header("Sounds")]
-    public AudioClip backgroundMusic;
-    public AudioClip buttonClick;
-    public AudioClip scanSound;
+    [Header("Music")]
+    public AudioClip themeSong;
+    public AudioClip gameplaySong;
+
+    [Header("SFX")]
+    public AudioClip click;
+    public AudioClip scan;
+    public AudioClip nextCustomer;
     public AudioClip levelComplete;
+    public AudioClip levelLose;
 
-    private float musicVolume = 1f;
-    private float sfxVolume = 1f;
+    [Header("Transition")]
+    public float crossfadeSpeed = 2f;
 
-    private bool musicEnabled = true;
-    private bool sfxEnabled = true;
+    private AudioClip currentMusic;
+
+    float musicVolume = 1f;
+    float sfxVolume = 1f;
+
+    bool musicEnabled = true;
+    bool sfxEnabled = true;
 
     void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
-            LoadSettings();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
             return;
         }
+
+        LoadSettings();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void Start()
     {
-        ApplySettings();
-        PlayBackgroundMusic();
+        UpdateVolumes();
     }
 
-    public void PlayBackgroundMusic()
+    void OnSceneLoaded(
+        Scene scene,
+        LoadSceneMode mode
+    )
     {
-        if(backgroundMusic == null)
+        string sceneName =
+            scene.name;
+
+        if (
+            sceneName == "MainMenu"
+            ||
+            sceneName == "Options"
+            ||
+            sceneName == "Credits"
+            ||
+            sceneName == "Tutorial"
+            ||
+            sceneName == "LevelSelection"
+        )
+        {
+            ChangeMusic(themeSong);
+        }
+
+        else if (
+            sceneName == "LevelEasy"
+            ||
+            sceneName == "LevelMedium"
+            ||
+            sceneName == "LevelHard"
+        )
+        {
+            ChangeMusic(gameplaySong);
+        }
+    }
+
+    //--------------------------------
+    // MUSIC
+    //--------------------------------
+
+    public void ChangeMusic(
+        AudioClip newMusic
+    )
+    {
+        if (currentMusic == newMusic)
             return;
 
-        if(musicSource.clip != backgroundMusic)
-        {
-            musicSource.clip = backgroundMusic;
-            musicSource.loop = true;
-        }
+        currentMusic = newMusic;
 
-        if(musicEnabled)
-        {
-            musicSource.Play();
-        }
+        StartCoroutine(
+            CrossFade(newMusic)
+        );
     }
 
-    public void StopBackgroundMusic()
+    IEnumerator CrossFade(
+        AudioClip newMusic
+    )
     {
+        while (musicSource.volume > 0)
+        {
+            musicSource.volume -=
+                Time.deltaTime
+                * crossfadeSpeed;
+
+            yield return null;
+        }
+
         musicSource.Stop();
+
+        musicSource.clip = newMusic;
+
+        musicSource.Play();
+
+        float targetVolume =
+            musicEnabled
+            ? musicVolume
+            : 0f;
+
+        while (
+            musicSource.volume
+            < targetVolume
+        )
+        {
+            musicSource.volume +=
+                Time.deltaTime
+                * crossfadeSpeed;
+
+            yield return null;
+        }
+
+        musicSource.volume =
+            targetVolume;
     }
 
-    public void PlayButtonClick()
+    //--------------------------------
+    // SFX
+    //--------------------------------
+
+    public void PlayClick()
     {
-        if(sfxEnabled && buttonClick != null)
-            sfxSource.PlayOneShot(buttonClick);
+        PlaySFX(click);
     }
 
     public void PlayScan()
     {
-        if(sfxEnabled && scanSound != null)
-            sfxSource.PlayOneShot(scanSound);
+        PlaySFX(scan);
+    }
+
+    public void PlayNextCustomer()
+    {
+        PlaySFX(nextCustomer);
     }
 
     public void PlayLevelComplete()
     {
-        if(sfxEnabled && levelComplete != null)
-            sfxSource.PlayOneShot(levelComplete);
+        PlaySFX(levelComplete);
     }
 
-    //-----------------------
-    // OPTIONS FUNCTIONS
-    //-----------------------
+    public void PlayLevelLose()
+    {
+        PlaySFX(levelLose);
+    }
 
-    public void SetMusicVolume(float value)
+    void PlaySFX(
+        AudioClip clip
+    )
+    {
+        if (
+            !sfxEnabled
+            ||
+            clip == null
+        )
+            return;
+
+        sfxSource.PlayOneShot(clip);
+    }
+
+    //--------------------------------
+    // SETTINGS
+    //--------------------------------
+
+    public void SetMusicVolume(
+        float value
+    )
     {
         musicVolume = value;
-        musicSource.volume = value;
 
         PlayerPrefs.SetFloat(
             "MusicVolume",
             value
         );
+
+        PlayerPrefs.Save();
+
+        UpdateVolumes();
+
+        Debug.Log(
+            "Music Volume Changed: "
+            + value
+        );
     }
 
-    public void SetSFXVolume(float value)
+    public void SetSFXVolume(
+        float value
+    )
     {
         sfxVolume = value;
-        sfxSource.volume = value;
 
         PlayerPrefs.SetFloat(
             "SFXVolume",
             value
         );
+
+        PlayerPrefs.Save();
+
+        UpdateVolumes();
+
+        Debug.Log(
+            "SFX Volume Changed: "
+            + value
+        );
     }
 
-    public void SetMusicEnabled(bool enabled)
+    public void ToggleMusic(
+        bool state
+    )
     {
-        musicEnabled = enabled;
-
-        if(enabled)
-            musicSource.Play();
-        else
-            musicSource.Stop();
+        musicEnabled = state;
 
         PlayerPrefs.SetInt(
             "MusicEnabled",
-            enabled ? 1 : 0
+            state ? 1 : 0
         );
+
+        PlayerPrefs.Save();
+
+        UpdateVolumes();
     }
 
-    public void SetSFXEnabled(bool enabled)
+    public void ToggleSFX(
+        bool state
+    )
     {
-        sfxEnabled = enabled;
+        sfxEnabled = state;
 
         PlayerPrefs.SetInt(
             "SFXEnabled",
-            enabled ? 1 : 0
+            state ? 1 : 0
         );
+
+        PlayerPrefs.Save();
+
+        UpdateVolumes();
+    }
+
+    void UpdateVolumes()
+    {
+        if (musicSource != null)
+        {
+            musicSource.volume =
+                musicEnabled
+                ? musicVolume
+                : 0f;
+
+            musicSource.mute =
+                !musicEnabled;
+        }
+
+        if (sfxSource != null)
+        {
+            sfxSource.volume =
+                sfxEnabled
+                ? sfxVolume
+                : 0f;
+
+            sfxSource.mute =
+                !sfxEnabled;
+        }
     }
 
     void LoadSettings()
@@ -160,36 +330,20 @@ public class SoundManager : MonoBehaviour
             ) == 1;
     }
 
-    void ApplySettings()
+    //--------------------------------
+    // DEBUG RESET
+    //--------------------------------
+
+    [ContextMenu("Reset Audio Save")]
+    void ResetAudioSave()
     {
-        musicSource.volume =
-            musicVolume;
+        PlayerPrefs.DeleteKey("MusicVolume");
+        PlayerPrefs.DeleteKey("SFXVolume");
+        PlayerPrefs.DeleteKey("MusicEnabled");
+        PlayerPrefs.DeleteKey("SFXEnabled");
 
-        sfxSource.volume =
-            sfxVolume;
+        PlayerPrefs.Save();
 
-        if(!musicEnabled)
-            musicSource.Stop();
-    }
-
-    // getters for UI
-    public float GetMusicVolume()
-    {
-        return musicVolume;
-    }
-
-    public float GetSFXVolume()
-    {
-        return sfxVolume;
-    }
-
-    public bool GetMusicEnabled()
-    {
-        return musicEnabled;
-    }
-
-    public bool GetSFXEnabled()
-    {
-        return sfxEnabled;
+        Debug.Log("Audio save reset.");
     }
 }

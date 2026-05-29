@@ -473,6 +473,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 415257866}
   - {fileID: 1908575140}
   - {fileID: 1655887140}
   - {fileID: 1966676683}
@@ -488,6 +489,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &415257864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415257866}
+  - component: {fileID: 415257865}
+  m_Layer: 0
+  m_Name: ButtonSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &415257865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415257864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861c09a83639a4c45bf26bdbd75ee1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSound
+--- !u!4 &415257866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415257864}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 91.717896, y: -22.705994, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 364896482}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,9 +760,9 @@ MonoBehaviour:
   m_text: "Customers will bring items to the <color=#5959FF>counter</color>.\n\nYour
     task is to <color=#51FF51>scan</color> the items by <color=#5959FF>dragging</color>
     the items to the <color=#5959FF>scanner</color> and give the <color=#51FF51>correct</color>
-    balance.\n\n <color=#FF0405>Mistakes</color> will reduce your life.\n\n<color=#5959FF>Serve</color>
-    customers <color=#51FF51>efficiently</color> to clear the level.\n\nGood luck,
-    cashier."
+    balance.\n\n <color=#FF0405>Mistakes</color> will reduce your life.\n\n<color=#5959FF>Click</color>
+    the customers <color=#51FF51>efficiently</color> to clear the level.\n\nGood
+    luck, cashier."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7731817c03bf88545baae0261fa63747, type: 2}
   m_sharedMaterial: {fileID: 2544524168930366598, guid: 7731817c03bf88545baae0261fa63747, type: 2}
@@ -943,6 +988,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 415257865}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1017594625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,6 +1050,7 @@ GameObject:
   - component: {fileID: 1212207430}
   - component: {fileID: 1212207429}
   - component: {fileID: 1212207428}
+  - component: {fileID: 1212207431}
   m_Layer: 5
   m_Name: TutorialBox
   m_TagString: Untagged
@@ -1073,6 +1131,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212207426}
   m_CullTransparentMesh: 1
+--- !u!114 &1212207431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212207426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33138393914e7de49b5d7beaca7ef8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIFadeIn
+  delay: 1
+  fadeSpeed: 1
+  targetOpacity: 0.25
+  playOnStart: 1
 --- !u!1 &1654269807
 GameObject:
   m_ObjectHideFlags: 0
